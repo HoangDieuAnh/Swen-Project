@@ -1,14 +1,19 @@
 class SessionsController < ApplicationController
   def login_attempt
-    authorized_user = User.authenticate(params[:username_or_email],params[:login_password])
+    authorized_user = User.authenticate(params[:session][:username_or_email], params[:session][:password])
     if authorized_user
       session[:user_id] = authorized_user.id
-      flash[:notice] = "Wow Welcome again, you logged in as #{authorized_user.username}"
-      redirect_to(:action => 'home')
+ 
+      @current_user= authorized_user
+      redirect_to(:action => 'home', :controller =>'pages')
     else
-      flash[:notice] = "Invalid Username or Password"
-      flash[:color]= "invalid"
-      render "login,"	
+      flash[:error] = '**Invalid password '
+      redirect_to :action => 'home', :controller => 'pages'
+
     end
+  end
+  def logout
+  session[:user_id] = nil
+  redirect_to :action => 'home', :controller => 'pages'
   end
 end

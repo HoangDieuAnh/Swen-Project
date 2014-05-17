@@ -40,5 +40,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 # Gems used only for assets and not required
 # in production environments by default.
 
-gem 'high_voltage'
+
 gem 'bcrypt', :require => 'bcrypt'

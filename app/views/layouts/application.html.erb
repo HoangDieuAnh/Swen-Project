@@ -34,17 +34,29 @@
         </button>
         <%= link_to site_name, site_url, :class => "navbar-brand" %>
       </div>
-      
-            <div class="navbar-collapse collapse">
-                      <%= form_tag 'login_attempt', class: 'navbar-form navbar-right', role: 'form' do %>
+             <div class="navbar-collapse collapse">
+             <%if session[:user_id] %>
+             <% authenticate_user %>
+             <div class="navbar-text navbar-right">
+             <p >Welcome <%=@current_user.name%>,    <%=link_to "Log out", logout_path%></p>
+             </div>
+              <%else%>
+              <div class= 'navbar-form navbar-right'>
+                      <%= form_for :session, :url=>{:controller=> 'sessions', :action => 'login_attempt'},  role: 'form' do |f| %>
                         <div class="form-group">
-                          <%= text_field_tag :username_or_email, nil, placeholder: "Username or Email", class: 'form-control' %>
+                          <%= f.text_field :username_or_email, placeholder: 'User name or Email', class: 'form-control' %>
                         </div>
                         <div class="form-group">
-                          <%= password_field_tag :password, nil, placeholder: "password", class: 'form-control' %>
+                          <%= f.password_field :password, placeholder: "password", class: 'form-control' %>
                         </div>
-                        <%= submit_tag "Log In", class: "btn btn-success" %>
+                        <%= f.submit :LogIn, class: "btn btn-success" %>
+                        <%=link_to "Sign up", new_path%>
+                         <% if flash[:error] %>
+                         <p class="error"><%= flash[:error] %></p>
+                         <% end %>
                         <%end%>
+                  </div>
+                <%end%>
         <ul class="nav navbar-nav">
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
           <li class="<%= 'active' if current_page?(about_path) %>"><%= link_to "About", about_path %></li>

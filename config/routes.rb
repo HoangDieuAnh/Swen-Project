@@ -8,19 +8,21 @@ Rails.application.routes.draw do
   #get 'sessions/setting'
     
 
-    get '/about'    => 'high_voltage/pages#show', id: 'about'
-    get '/contact'  => 'high_voltage/pages#show', id: 'contact'
-    get '/privacy'  => 'high_voltage/pages#show', id: 'privacy'
-    get '/terms'    => 'high_voltage/pages#show', id: 'terms'
+    match '/about' , controller: 'pages', action: 'about', via: :get
+    match '/contact' , controller: 'pages', action: 'contact', via: :get
+    match '/privacy' , controller: 'pages', action: 'privacy', via: :get
+    match '/terms' , controller: 'pages', action: 'terms', via: :get
+
     match '/login_attempt', controller: 'sessions', action: 'login_attempt', via: :post
     match '/new', controller: 'user', action: 'new', via: [:get, :post]
     match '/create', controller: 'user', action: 'create', via: :post
+    match '/logout', controller:'sessions', action:'logout', via: [:post, :get]
 
 
     #post '/login_attempt'     => 'high_voltage/pages#show', id: 'home'
     get '/home', to: redirect('/')
     
-  root :to => 'high_voltage/pages#show', id: 'home'
+  root :to => 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

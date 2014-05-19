@@ -15,6 +15,7 @@
  *= bootstrap.min
  *= bootstrap
  *= require bootstrap_and_overrides
+ *= require datePicker
  */
 @font-face {
   font-family: 'Glyphicons Halflings';

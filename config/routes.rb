@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   #get 'sessions/login,'
 
   #get 'sessions/home,'
@@ -17,8 +18,8 @@ Rails.application.routes.draw do
     match '/new', controller: 'user', action: 'new', via: [:get, :post]
     match '/create', controller: 'user', action: 'create', via: :post
     match '/logout', controller:'sessions', action:'logout', via: [:post, :get]
-
-
+    match 'event/create', controller: 'event', action: 'create', via: [:post, :get]
+    match 'event/index', controller: 'event', action: 'index', via: :get
     #post '/login_attempt'     => 'high_voltage/pages#show', id: 'home'
     get '/home', to: redirect('/')
     

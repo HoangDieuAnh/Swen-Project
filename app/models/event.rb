@@ -1,13 +1,11 @@
 class Event < ActiveRecord::Base
 	has_many :event_pictures, :dependent => :destroy
   has_many :tickets, :foreign_key => 'event_id', :dependent => :destroy
-		accepts_nested_attributes_for :event_pictures, :tickets, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
+		accepts_nested_attributes_for :event_pictures, :tickets
     #accepts_nested_attributes_for :tickets, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
-
-    validates_presence_of :title, :if => lambda { |e| e.current_step == "index" }
-    validates_presence_of :venue, :if => lambda { |e| e.current_step == "index" }
-    validates_presence_of :eventDate, :if => lambda { |e| e.current_step == "index" }  
-
+   validates :title, :presence => true, :length => { :in => 3..20 }
+  validates :eventDate, :presence => true
+   validates :venue, :presence => true, :length => { :in => 3..20 }
 	   #password_confirmation attr
 
     attr_writer :current_step
@@ -16,7 +14,7 @@ class Event < ActiveRecord::Base
   end
   
   def steps
-    %w[ ticket index]
+    %w[ pict ticket]
   end
   
   def next_step
@@ -47,6 +45,9 @@ class Event < ActiveRecord::Base
         3.times { self.event_pictures.build }
        
      end
+     def tickets_for_event
+        self.tickets.build
+      end
 
 end
 

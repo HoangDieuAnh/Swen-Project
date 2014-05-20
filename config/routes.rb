@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  #match '/events' , controller: 'events', action: 'index', via: :get
+  #match '/events/:id' , controller: 'event', action: 'show', via: :get
 
-  resource :tickets
-
-  resource :controllers
-
+  
+  resources :tickets, :events, :event_pictures
+  
   #get 'sessions/login,'
 
   #get 'sessions/home,'
@@ -18,13 +19,10 @@ Rails.application.routes.draw do
     match '/contact' , controller: 'pages', action: 'contact', via: :get
     match '/privacy' , controller: 'pages', action: 'privacy', via: :get
     match '/terms' , controller: 'pages', action: 'terms', via: :get
-
     match '/login_attempt', controller: 'sessions', action: 'login_attempt', via: :post
     match '/new', controller: 'users', action: 'new', via: [:get, :post]
     match '/create', controller: 'users', action: 'create', via: :post
     match '/logout', controller:'sessions', action:'logout', via: [:post, :get]
-    match 'event/new', controller: 'event', action: 'new', via: :get
-    match 'event/create', controller: 'event', action:'create', via: [:post, :get]
     #post '/login_attempt'     => 'high_voltage/pages#show', id: 'home'
     get '/home', to: redirect('/')
     

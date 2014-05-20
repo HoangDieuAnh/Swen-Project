@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :tickets
+  resource :tickets
 
-  resources :controllers
+  resource :controllers
 
   #get 'sessions/login,'
 
@@ -20,11 +20,11 @@ Rails.application.routes.draw do
     match '/terms' , controller: 'pages', action: 'terms', via: :get
 
     match '/login_attempt', controller: 'sessions', action: 'login_attempt', via: :post
-    match '/new', controller: 'user', action: 'new', via: [:get, :post]
-    match '/create', controller: 'user', action: 'create', via: :post
+    match '/new', controller: 'users', action: 'new', via: [:get, :post]
+    match '/create', controller: 'users', action: 'create', via: :post
     match '/logout', controller:'sessions', action:'logout', via: [:post, :get]
-    match 'event/create', controller: 'event', action: 'create', via: [:post, :get]
-    match 'event/index', controller: 'event', action: 'index', via: :get
+    match 'event/new', controller: 'event', action: 'new', via: :get
+    match 'event/create', controller: 'event', action:'create', via: [:post, :get]
     #post '/login_attempt'     => 'high_voltage/pages#show', id: 'home'
     get '/home', to: redirect('/')
     

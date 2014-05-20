@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520044538) do
+ActiveRecord::Schema.define(version: 20140520120346) do
+
+  create_table "controllers", force: true do |t|
+    t.string   "ticket"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "event_pictures", force: true do |t|
     t.integer  "event_id"
@@ -39,6 +45,17 @@ ActiveRecord::Schema.define(version: 20140520044538) do
   create_table "products", force: true do |t|
     t.string   "name"
     t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tickets", force: true do |t|
+    t.integer  "price"
+    t.integer  "event_id"
+    t.date     "startdate"
+    t.date     "closedate"
+    t.integer  "maxnumber"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

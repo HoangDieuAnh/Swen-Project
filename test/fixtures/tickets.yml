@@ -1,14 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  price: 9.99
+  price: 1
+  event_id: 1
   startdate: 2014-05-20
   closedate: 2014-05-20
   maxnumber: 1
   description: MyText
 
 two:
-  price: 9.99
+  price: 1
+  event_id: 1
   startdate: 2014-05-20
   closedate: 2014-05-20
   maxnumber: 1

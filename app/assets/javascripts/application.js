@@ -11,9 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require datePicker
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap.min
 //= require_tree .
+//= require jquery_nested_form
 //

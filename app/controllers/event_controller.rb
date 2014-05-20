@@ -1,9 +1,14 @@
 class EventController < ApplicationController
     def index
-        unless session[:user_id]
+        if !session[:user_id]
         	redirect_to(:controller => 'user', :action => 'new')
+        else
+            @event = Event.new
+            3.times { @event.event_pictures.build }
+
         end
     end
+    
 
     def create
     	
@@ -21,8 +26,12 @@ class EventController < ApplicationController
   
      end
     def event_params
-        params.require(:event).permit(:title, :eventDate, :eventTime, :venue, :eventType, :description)
+        params.require(:event).permit(:title, :eventDate, :eventTime,
+        :venue, :eventType, :description, event_pictures_attributes: [:event_id, :image])
     end
+   
+
+
 
     
 end

@@ -39,6 +39,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 # Gems used only for assets and not required
 # in production environments by default.
-
+gem "paperclip", "~> 3.5.3"
+gem "nested_form"
 
 gem 'bcrypt', :require => 'bcrypt'

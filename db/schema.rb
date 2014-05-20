@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519101431) do
+ActiveRecord::Schema.define(version: 20140520044538) do
+
+  create_table "event_pictures", force: true do |t|
+    t.integer  "event_id"
+    t.binary   "picture"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "picturename"
+  end
 
   create_table "events", force: true do |t|
     t.string   "title"

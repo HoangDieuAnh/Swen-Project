@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :tickets
+
+  resources :controllers
+
   #get 'sessions/login,'
 
   #get 'sessions/home,'
@@ -7,6 +11,7 @@ Rails.application.routes.draw do
   #get 'sessions/profile,'
 
   #get 'sessions/setting'
+    
     
 
     match '/about' , controller: 'pages', action: 'about', via: :get

@@ -33,7 +33,10 @@ def new
         session[:event_params] ||= {}
         @event = Event.new(session[:event_params])
         @event.current_step = session[:event_step]
+        @event.pictures_for_event
+        @event.tickets_for_event
     end
+
 end
 
 def create
